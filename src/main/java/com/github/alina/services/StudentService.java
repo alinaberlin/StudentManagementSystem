@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentService {
+public class StudentService extends AuthService<Student> {
 
     public StudentService() {
     }
@@ -97,6 +97,7 @@ public class StudentService {
             throw new RuntimeException(e);
         }
     }
+
 }
 
 
