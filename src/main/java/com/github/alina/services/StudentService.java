@@ -81,6 +81,22 @@ public class StudentService {
         students.forEach(s -> insert(s));
     }
 
+    public Student findByName(String name) {
+        try (
+                FileInputStream fileInputStream = new FileInputStream("student.out");
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+            while (true) {
+                Student student = (Student) objectInputStream.readObject();
+                if (student.getName().contains(name)) {
+                    return student;
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Student not found");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
 
