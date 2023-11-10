@@ -1,5 +1,7 @@
 package com.github.alina.models;
 
+import java.util.Objects;
+
 public class Grade {
     private Student student;
     private Course course;
@@ -35,4 +37,16 @@ public class Grade {
         this.grade = grade;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Grade grade1 = (Grade) o;
+        return getGrade() == grade1.getGrade() && Objects.equals(getStudent(), grade1.getStudent()) && Objects.equals(getCourse(), grade1.getCourse());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getStudent(), getCourse(), getGrade());
+    }
 }
