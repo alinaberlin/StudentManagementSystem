@@ -11,7 +11,7 @@ public class Student extends User {
     public Student(String name, String userName, String password, int id) {
         super(name, userName, password, id);
     }
-    public Collection<Course> getEnrolledCourses(){
+    public Set<Course> getEnrolledCourses(){
         return enrolledCourses;
     }
     public void addCourse(Course course) {
