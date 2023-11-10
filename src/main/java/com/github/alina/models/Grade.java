@@ -41,12 +41,12 @@ public class Grade {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Grade grade1 = (Grade) o;
-        return getGrade() == grade1.getGrade() && Objects.equals(getStudent(), grade1.getStudent()) && Objects.equals(getCourse(), grade1.getCourse());
+        Grade grade = (Grade) o;
+        return Objects.equals(getStudent(), grade.getStudent()) && Objects.equals(getCourse(), grade.getCourse());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getStudent(), getCourse(), getGrade());
+        return Objects.hash(getStudent(), getCourse());
     }
 }
