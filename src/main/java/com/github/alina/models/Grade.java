@@ -2,12 +2,13 @@ package com.github.alina.models;
 
 import java.util.Objects;
 
-public class Grade {
+public class Grade extends BaseModel {
     private Student student;
     private Course course;
     private int grade;
 
-    public Grade(Student student, Course course, int grade) {
+    public Grade(Student student, Course course, int grade, int id) {
+        super(id);
         this.student = student;
         this.course = course;
         this.grade = grade;
