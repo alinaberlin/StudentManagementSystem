@@ -61,4 +61,9 @@ public class BaseService<T extends BaseModel> {
             throw new RuntimeException();
         }
     }
+
+    public void printAll() {
+        elements.values().forEach(System.out::println);
+    }
+
 }

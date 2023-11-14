@@ -1,9 +1,6 @@
 package com.github.alina.ui;
 
-import com.github.alina.models.Admin;
-import com.github.alina.models.Student;
-import com.github.alina.models.Teacher;
-import com.github.alina.models.User;
+import com.github.alina.models.*;
 import com.github.alina.services.*;
 
 import java.util.Scanner;
@@ -85,5 +82,48 @@ public class Cli {
         STUDENT,
         NOTLOGIN
 
+    }
+
+    public void menu() {
+        switch (getUserType()) {
+            case NOTLOGIN -> {
+                System.out.println("You should login or register, 1 for login or 2 for register");
+                int option = scanner.nextInt();
+                if (option == 1) {
+                    login();
+                } else {
+                    registerUser();
+                }
+            }
+            case TEACHER -> {
+                System.out.println("1: List Courses, 2: List My Courses, 3: Grade Student");
+                int option = scanner.nextInt();
+                switch (option) {
+                    case 1 -> courseService.printAll();
+                    case 2 -> ((Teacher) currentUser).getTeachingCourses().forEach(System.out::println);
+                    case 3 -> {
+                        int studentId = scanner.nextInt();
+                        int courseId = scanner.nextInt();
+                        Student student = studentService.find(studentId);
+                        Course course = courseService.find(courseId);
+                        if (((Teacher) currentUser).getTeachingCourses().contains(course)) {
+                            int grade = scanner.nextInt();
+                            gradeService.createGrade(student, course, grade);
+                        }
+
+                    }
+
+                }
+            }
+            case STUDENT -> {
+                System.out.println("1: List Courses, 2: List My Courses, 3: Enroll to Course");
+                //TODO add code to list courses, enroll to course etc.
+                
+            }
+            case ADMIN -> {
+                System.out.println("1: List Courses, 2: Create Course, 3: Allocate Teacher to Course");
+                //TODO add code to list all courses, create new course, allocate Teachers to courses
+            }
+        }
     }
 }
