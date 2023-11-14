@@ -1,5 +1,8 @@
 package com.github.alina.ui;
 
+import com.github.alina.models.Admin;
+import com.github.alina.models.Student;
+import com.github.alina.models.Teacher;
 import com.github.alina.models.User;
 import com.github.alina.services.*;
 
@@ -14,6 +17,19 @@ public class Cli {
 
     private User currentUser;
     private Scanner scanner;
+
+    public UserType getUserType() {
+        if (currentUser instanceof Teacher) {
+            return UserType.TEACHER;
+        }
+        if (currentUser instanceof Admin) {
+            return UserType.ADMIN;
+        }
+        if (currentUser instanceof Student) {
+            return UserType.STUDENT;
+        }
+        return UserType.NOTLOGIN;
+    }
 
 
     public Cli() {
@@ -61,5 +77,13 @@ public class Cli {
             case 2 -> currentUser = studentService.register(name, userName, password);
             default -> currentUser = adminService.register(name, userName, password);
         }
+    }
+
+    enum UserType {
+        ADMIN,
+        TEACHER,
+        STUDENT,
+        NOTLOGIN
+
     }
 }
