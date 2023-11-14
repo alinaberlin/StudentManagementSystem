@@ -118,7 +118,19 @@ public class Cli {
             case STUDENT -> {
                 System.out.println("1: List Courses, 2: List My Courses, 3: Enroll to Course");
                 //TODO add code to list courses, enroll to course etc.
-                
+                int option = scanner.nextInt();
+                switch (option) {
+                    case 1 -> courseService.printAll();
+                    case 2 -> ((Student) currentUser).getEnrolledCourses().forEach(System.out::println);
+                    case 3 -> {
+                        int courseId = scanner.nextInt();
+                        Course course = courseService.find(courseId);
+                        ((Student) currentUser).addCourse(course);
+                        studentService.update((Student) currentUser);
+                    }
+
+                }
+
             }
             case ADMIN -> {
                 System.out.println("1: List Courses, 2: Create Course, 3: Allocate Teacher to Course");
