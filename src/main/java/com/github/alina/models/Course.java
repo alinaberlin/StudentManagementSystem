@@ -1,23 +1,12 @@
 package com.github.alina.models;
 
-import java.util.Arrays;
-import java.util.Objects;
+public class Course extends BaseModel {
 
-public class Course {
-    private int id;
     private String name;
 
     public Course(int id, String name) {
-        this.id = id;
+        super(id);
         this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -29,15 +18,10 @@ public class Course {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Course course = (Course) o;
-        return getId() == course.getId();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
+    public String toString() {
+        return "Course{" +
+                "name='" + name + '\'' +
+                super.toString() + "} ";
     }
 }
+

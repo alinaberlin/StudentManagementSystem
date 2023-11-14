@@ -1,7 +1,5 @@
 package com.github.alina.models;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +9,7 @@ public class Student extends User {
     public Student(String name, String userName, String password, int id) {
         super(name, userName, password, id);
     }
-    public Collection<Course> getEnrolledCourses(){
+    public Set<Course> getEnrolledCourses(){
         return enrolledCourses;
     }
     public void addCourse(Course course) {
