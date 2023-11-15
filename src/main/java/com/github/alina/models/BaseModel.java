@@ -26,4 +26,9 @@ public class BaseModel implements Serializable {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id;
+    }
 }

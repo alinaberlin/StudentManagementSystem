@@ -15,6 +15,9 @@ public class Teacher extends User {
             teachingCourses.add(course);
     }
 
+    public Set<Course> getTeachingCourses() {
+        return teachingCourses;
+    }
 }
 
 
